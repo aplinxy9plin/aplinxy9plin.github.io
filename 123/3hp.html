@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>XR.+ AR | Casa</title>
+    <meta name="keywords" content="AR VR XR webAR browser XR+ XR.+ xr.plus" />
+    <meta name="description" content="Create, edit and share AR and VR projects directly in a browser" />
+
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, shrink-to-fit=no" />
+    <meta name="mobile-web-app-capable" content="yes"> <!-- fullscreen if added in homescreen -->
+	<meta name="google" value="notranslate">
+
+    <meta name="theme-color" content="#000000" />
+
+    
+    <meta property="og:updated_time" content="1533823229" />
+
+    <meta property="og:image" content="s/201808/3hp/p512.jpg" />
+    <meta property="og:image:secure_url" content="s/201808/3hp/p512.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="500" />
+    <meta property="og:image:height" content="500" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Casa" />
+    <meta property="og:description" content="Create and share AR &amp; VR projects directly in web browsers" />
+    <meta property="og:site_name" content="XR.+" />
+    <meta property="og:url" content="https://xr.plus/3hp" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@XRdotplus">
+    <meta name="twitter:creator" content="@XRdotplus">
+    <meta name="twitter:title" content="Casa">
+    <meta name="twitter:description" content="Create and share AR &amp; VR projects directly in web browsers">
+    <meta name="twitter:image" content="s/201808/3hp/p512.jpg">
+
+	<link rel="stylesheet" type="text/css" href="fonts/interface/stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="publicar/css/default.css" />
+
+    <style>
+        #preloader{
+            z-index:101;
+            position:fixed;
+            top:0;left:0;right:0;bottom:0;
+            background:#e0e0e0;
+        }
+        #preloader >div{
+            position:absolute;
+            top:50%;left:50%;
+            transform:translate(-50%,-50%);
+        }
+        #preloader .spinner{
+            margin:auto;
+            width:160px;
+            height:160px;
+            position:relative;
+            border-radius:50%;
+            border:5px solid white;
+            border-right:5px solid red;
+            border-bottom:5px solid red;
+            border-left:5px solid red;
+            animation:spin 1s ease infinite;
+        }
+        @keyframes spin {
+            0% {transform:rotateZ(0);}
+            100% {transform:rotateZ(359deg);}
+        }
+        #noAccess, #noCamera, #desktop{
+            display:none;
+        }
+    </style>
+
+            <script>window.twttr = (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+          if (d.getElementById(id)) return t;
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "https://platform.twitter.com/widgets.js";
+          fjs.parentNode.insertBefore(js, fjs);
+          t._e = [];
+          t.ready = function(f) {
+            t._e.push(f);
+          };
+          return t;
+        }(document, "script", "twitter-wjs"));</script>
+    
+</head>
+
+<body class="defaultBranding shareButtons">
+
+    
+    <canvas id="threejs"></canvas>
+
+    <div id="access" class="brandingBg"><div><p data-text="allowAccess">Please allow access to the camera</p></div></div>
+
+    <div id="sceneLoader" class="brandingBg">
+        <div>
+            <p data-text="loadingTheMagic">loading the magic</p>
+            <div class="filler"><div id="fill" class="fill"></div></div>
+        </div>
+    </div>
+
+    <div id="playPanel" class="brandingBg" style="display:none;">
+        <div></div>
+    </div>
+
+
+
+    <div id="preloader" class="brandingBg"><div><div class="spinner"></div></div></div>
+
+    <div id="noAccess">
+        <div>
+            <h3 data-text="noAccess">No camera access</h3>
+            <p data-text="yesCamera" id="yesCamera">Accessing your device camera is required for augmented reality experiences</p>
+
+            <div id="noCamera"><p data-text="noCamera">Sorry, but it seems you have no camera plugged-in. Plug a camera and try again</p></div>
+
+            <!-- this goes to xr.plus -->
+            <!-- <p><a data-text="tryAgain" class="button" id="tryAgain" href="#" onclick="window.parent.location = document.referrer;">try again</a></p> -->
+            <p><a data-text="tryAgain" class="button" id="tryAgain" target="_self" href="3hp.html">try again</a></p>
+            <p><span data-text="displayThePattern" class="button" id="b_showPattern">display the AR pattern</span></p>
+
+        </div>
+    </div>
+
+    <div id="desktop" class="brandingBg">
+
+        <a data-text="joinTheCommunityTop" class="join" target="_top" href="register/index.html">Join the community and upload your 3D models!</a>
+
+        <div class="content brandingBg">
+
+            <div class="top">
+                <div class="preview"><img src="s/201808/3hp/p512.jpg" alt="preview" /></div>
+                <div class="text">
+                    <h3><span data-text="betterOnMobile">Augmented Reality is better on mobile</span></h3>
+                    <p><span data-text="visitOnMobile">On your phone web browser, visit </span><span class="url">xr.plus/3hp</span></p>
+                </div>
+
+            </div>
+
+            <div class="bottom">
+                <div class="marker">
+                <img class="patternPreview" src="assets/xrplus-marker-512.png" alt="ar marker" />                </div>
+                <div class="youtube"><div class="videoWrapper" id="youtubeIframeWrapper"></div></div>
+            </div>
+
+            <div class="buttons">
+                <span data-text="continueAnyway" class="button continue" id="b_continueOnDesktop">continue anyway</span>
+            </div>
+
+        </div>
+<!--
+        <a data-text="print" class="button print" target="_blank" href="https://xr.plus/pdf/xr_dot_plus_marker.pdf">print the pattern</a>
+-->
+    </div>
+
+    <div id="logo"><img src="assets/logo.png" alt="XR.+" /></div>
+
+
+    <div id="social">
+        <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Casa%20#XRdotPlus%20%23AR%20on%20web%20browsers"></a>
+        <div class="fb-share-button" data-href="https://xr.plus/3hp" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xr.plus/&src=sdkpreparse">Share</a></div>
+    </div>
+
+    <footer class="brandingBg">
+        <div class="title">
+            <h1>Casa</h1>
+            <p>Casa en el bosquesin</p>        </div>
+        <div class="pattern brandingBg">
+
+                            <p data-text="direct">Direct the camera to this pattern</p>
+                <img class="patternPreview" src="assets/xrplus-marker-512.png" alt="webAR marker" />
+                            <!-- <span class="button" id="b_marker" data-text="iDontHave">I don't have it</span> -->
+            <span class="button" id="b_marker" data-text="help">help</span>
+        </div>
+    </footer>
+
+    <div id="orientation">
+        <span class="button small" id="b_audio">enable sounds</span>
+
+        <ul>
+            <li id="h" data-text="flat">flat</li>
+            <li id="v" data-text="vertical">vertical</li>
+        </ul>
+    </div>
+
+    <div id="help" class="brandingBg">
+
+        <div class="image"><img class="help" src="publicar/help.jpg" alt="webAR marker" /></div>
+        <div class="text mobile">
+            <p data-text="onAnother">On another phone or on a computer, <br/>visit <span class="link">https://xr.plus/p</span> <br/>to display the AR pattern.</p>
+        </div>
+        <div class="text desktop">
+            <p class="url"><span class="link">xr.plus/3hp</span></p>
+            <p data-text="visitThisLink">Visit this link with your phone browser<br/>and point the phone camera here.</p>
+            <!--
+            <p><a data-text="displayThePattern" class="button" href="xr.plus/p" target="self">display the AR pattern</a></p>
+        -->
+        </div>
+        <ul class="patternPreviews"></ul>
+                <span class="b_close" id="b_close_help"></span>
+
+    </div>
+    <div id="patternNoCamera" class="brandingBg">
+
+        <div class="image"><img class="patternPreview" src="assets/xrplus-marker-512.png" alt="ar marker" /></div>
+        <div class="text">
+            <p class="url">xr.plus/3hp</p>
+            <p data-text="visitThisLinkPattern">Visit this link from your phone browser and point the camera to this pattern.</p>
+        </div>
+        <span class="b_close" id="b_close_patternNoCamera"></span>
+    </div>
+
+    <div id="patternLarge" class="brandingBg">
+        <div class="image"><img class="patternPreview" src="assets/xrplus-marker-512.png" alt="ar marker" /></div>
+        <span class="b_close" id="b_close_patternLarge"></span>
+    </div>
+
+    <div id="more" class="brandingBg">
+        <div>
+            <p data-text="discoverMoreOnTheHome">Discover more on the homepage</p>
+        <!--    <a data-text="discoverMore" class="button discover" target="_top" href="https://xr.plus/">discover more</a> -->
+            <div class="items">
+            <a class="item" href="index.html"><img src="s/201803/egg/p256.jpg" alt="paint an Easter egg"/></a>
+<a class="item" href="index.html"><img src="s/201803/vf0/p256.jpg" alt="Diablada"/></a>
+<a class="item" href="index.html"><img src="s/201802/czd/p256.jpg" alt="Animated squirrel"/></a>
+            </div>
+            <p data-text="joinTheCommunity">Join the community and upload your models</p>
+            <a data-text="joinNow" class="button join" target="_top" href="register/index.html">Join now</a>
+        </div>
+        <span class="b_close" id="b_close_more"></span>
+    </div>
+
+    <div id="redirection" class="brandingBg">
+        <div>
+            <p id="p_redirection"></p>
+            <p><a class="button" id="b_redirection" href="" target="_top"></a></p>
+        </div>
+        <span class="b_close" id="b_close_redirection"></span>
+    </div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_UK/sdk.js#xfbml=1&version=v2.11&appId=824878554360740';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+    <video id="bgVideo" autoplay muted playsinline></video>
+
+    <script>
+        var _language = navigator.language || navigator.userLanguage;
+        const _domainMin = "xr.plus";
+        const _rootDirectory = "https://xr.plus/";
+        const _projectURL = "3hp";
+        const _preview = "s/201808/3hp/p512.jpg";
+        var _patternPageURL = 'https://xr.plus/p';
+        var _isVertical = false;
+        const _skipDesktopAR = false;
+        const _isDebug = false;
+
+             function getAndroidVersion(ua) {ua = (ua || navigator.userAgent).toLowerCase(); var match = ua.match(/android\s([0-9\.]*)/);return match ? match[1] : false;};
+    </script>
+
+
+    <script src="js/is.min.js"></script>
+    <script src="js/jszip315.min.js"></script>
+    <script src="js/jszip-utils.fork.js"></script>
+    <script src="js/3-94.js"></script>
+
+
+    <script src="js/artoolkit.min.js"></script><script src="publicar/js/process-ars-dist.js"></script>
+
+</body>
+</html>

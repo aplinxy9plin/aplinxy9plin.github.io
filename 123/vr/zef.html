@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>XR.+ VR | snow scene</title>
+    <meta name="keywords" content="AR VR XR webAR browser XR+ XR.+ xr.plus" />
+    <meta name="description" content="Create, edit and share AR and VR projects directly in a browser" />
+
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+    <meta name="mobile-web-app-capable" content="yes"> <!-- fullscreen if added in homescreen -->
+	<meta name="google" value="notranslate">
+
+    
+    <meta property="og:updated_time" content="1533823228" />
+
+    <meta property="og:image" content="https://xr.plus/s/201709/zef/preview-zef.jpg" />
+    <meta property="og:image:secure_url" content="https://xr.plus/s/201709/zef/preview-zef.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="500" />
+    <meta property="og:image:height" content="500" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="snow scene" />
+    <meta property="og:description" content="Create and share AR &amp; VR projects directly in web browsers" />
+    <meta property="og:site_name" content="XR.+" />
+    <meta property="og:url" content="https://xr.plus/zef" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@XRdotplus">
+    <meta name="twitter:creator" content="@XRdotplus">
+    <meta name="twitter:title" content="snow scene">
+    <meta name="twitter:description" content="Create and share AR &amp; VR projects directly in web browsers">
+    <meta name="twitter:image" content="https://xr.plus/s/201709/zef/preview-zef.jpg">
+
+    <!-- Origin Trial Token, feature = WebVR (For Chrome M62+), origin = https://xr.plus, expires = 2018-09-11 -->
+    <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M62+)" data-expires="2018-09-11" content="AondWBVDE8s8udxPEcHQhG3e6Bq66v4r1gP5rZYAR06f+KCa0nxFoUk2I5K6Sksu7qdBC+bf2nQ6FMouO8/58gQAAABMeyJvcmlnaW4iOiJodHRwczovL3hyLnBsdXM6NDQzIiwiZmVhdHVyZSI6IldlYlZSMS4xTTYyIiwiZXhwaXJ5IjoxNTM2NjI0MDAwfQ==">
+    
+	<link rel="stylesheet" type="text/css" href="../fonts/interface/stylesheet.css" />
+    <link rel="stylesheet" type="text/css" href="../publicvr/css/default.css" />
+
+    <style>
+        </style>
+
+            <script>window.twttr = (function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0],
+            t = window.twttr || {};
+          if (d.getElementById(id)) return t;
+          js = d.createElement(s);
+          js.id = id;
+          js.src = "https://platform.twitter.com/widgets.js";
+          fjs.parentNode.insertBefore(js, fjs);
+          t._e = [];
+          t.ready = function(f) {
+            t._e.push(f);
+          };
+          return t;
+        }(document, "script", "twitter-wjs"));</script>
+    
+</head>
+
+<body class="defaultBranding shareButtons">
+
+    <div id="sceneLoader" class="brandingBg">
+        <div>
+            <p>loading</p>
+            <div id="model">
+                model<br/>
+                <div class="filler"><div class="fill"></div></div>
+            </div>
+            <div id="textures">
+                textures<br/>
+                <div class="filler"><div class="fill"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="logo">
+        <a id="b_logo" href="../index.html"><img src="../assets/logo.png" alt="XR.+" /></a>
+    </div>
+
+    <footer class="brandingBg">
+        <h1>snow scene</h1>
+        <p>low poly forest snow scene</p>
+    </footer>
+
+        <div id="social">
+        <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=snow%20scene%20#XRdotPlus%20%23VR%20on%20web%20browsers"></a>
+        <div class="fb-share-button" data-href="https://xr.plus/vr/zef" data-layout="button" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://xr.plus/&src=sdkpreparse">Share</a></div>
+    </div>
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_UK/sdk.js#xfbml=1&version=v2.11&appId=824878554360740';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+    
+    <div id="logoMenu" class="brandingBg">
+        <div>
+        </div>
+        <span class="b_close" id="b_close_logoMenu"></span>
+    </div>
+
+        <div id="message"></div>
+    <span id="b_webvr" class="button"><img src="../assets/icons/icon-vr.svg" alt="XR.+ VR mode" /></span>
+    <span id="b_exit_webvr" class="button">exit VR mode</span>
+    <script>
+        var _language = navigator.language || navigator.userLanguage;
+        const _domainMin = "xr.plus";
+        const _rootDirectory = "https://xr.plus/";
+        const _projectURL = "zef";
+        var _folder = "../publicvr/";
+        const _isDebug = false;
+        //var _isPublished = 1;
+    </script>
+
+    <script type="x-shader/x-vertex" id="vertexShader">
+        varying vec3 vWorldPosition;
+        void main() {
+            vec4 worldPosition = modelMatrix * vec4( position, 1.0 );
+            vWorldPosition = worldPosition.xyz;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+        }
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragmentShader">
+        uniform vec3 topColor;
+        uniform vec3 bottomColor;
+        uniform float offset;
+        uniform float exponent;
+        varying vec3 vWorldPosition;
+        void main() {
+            float h = normalize( vWorldPosition + offset ).y;
+            gl_FragColor = vec4( mix( bottomColor, topColor, max( pow( max( h, 0.0 ), exponent ), 0.0 ) ), 1.0 );
+        }
+    </script>
+
+	<script src="../js/jszip315.min.js"></script>
+        <script src="../js/jszip-utils.fork.js"></script>
+
+    <script src="../js/texts.js"></script>
+	<script src="../js/is.min.js"></script>
+    <!-- <script src="https://code.jquery.com//jquery-3.2.1.min.js"></script> -->
+    <script src="../js/3-93.js"></script>
+    <script src="../js/threejs/controls/PointerLockControls.js"></script>
+
+    <script src="../js/Tween.js"></script>
+
+    <script src="../publicvr/js/cl_lib.js"></script>
+
+    <script src="../publicvr/js/process-vrs-dist.js"></script>
+
+
+</body>
+</html>

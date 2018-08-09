@@ -1,0 +1,74 @@
+/* https://github.com/rsms/interface */
+
+/*
+
+@font-face {
+    font-family: 'Interface-Bold';
+    src: url('Interface-Bold.woff2') format('woff2'),
+         url('Interface-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Interface-medium';
+    src: url('Interface-Medium.woff2') format('woff2'),
+         url('Interface-Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Interface-Regular';
+    src: url('Interface-Regular.woff2') format('woff2'),
+         url('Interface-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*/
+
+@font-face {
+  font-family: 'Interface';
+  font-style:  normal;
+  font-weight: 400;
+  src: url("Interface-Regular.woff2") format("woff2"),
+       url("Interface-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: 'Interface';
+  font-style:  italic;
+  font-weight: 400;
+  src: url("Interface-RegularItalic.woff2") format("woff2"),
+       url("Interface-RegularItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'Interface';
+  font-style:  normal;
+  font-weight: 500;
+  src: url("Interface-Medium.woff2") format("woff2"),
+       url("Interface-Medium.woff") format("woff");
+}
+@font-face {
+  font-family: 'Interface';
+  font-style:  italic;
+  font-weight: 500;
+  src: url("Interface-MediumItalic.woff2") format("woff2"),
+       url("Interface-MediumItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: 'Interface';
+  font-style:  normal;
+  font-weight: 700;
+  src: url("Interface-Bold.woff2") format("woff2"),
+       url("Interface-Bold.woff") format("woff");
+}
+@font-face {
+  font-family: 'Interface';
+  font-style:  italic;
+  font-weight: 700;
+  src: url("Interface-BoldItalic.woff2") format("woff2"),
+       url("Interface-BoldItalic.woff") format("woff");
+}
