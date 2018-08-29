@@ -1,0 +1,50 @@
+{
+  "uniqueLinkShared" : "https:\/\/www.dropbox.com\/s\/yfbv35wu47i6iwp\/appinfo.json",
+  "latestVersion" : {
+    "build" : "1",
+    "buildtype" : "development",
+    "manifestLink" : "https:\/\/www.dropbox.com\/s\/y1hftjjc8zhb0fd\/manifest.plist",
+    "supporteddevice" : "iPhone and iPad",
+    "minosversion" : "9.0",
+    "ipafilesize" : 94,
+    "mobileprovision" : {
+      "devicesudid" : [
+        "09e8619324.....337367ea46"
+      ],
+      "uuid" : "f66e31d2-69ff-4722-92e7-8537de34d158",
+      "teamname" : "Никита Аплин",
+      "expirationdata" : 1536121665,
+      "createdate" : 1535516865,
+      "teamid" : "ESY9U785K8"
+    },
+    "identifier" : "com.nikita-aplin.huyzika1",
+    "version" : "1.0",
+    "timestamp" : 1535521556.271138,
+    "name" : "VKMusicNew"
+  },
+  "versions" : [
+    {
+      "build" : "1",
+      "buildtype" : "development",
+      "manifestLink" : "https:\/\/www.dropbox.com\/s\/y1hftjjc8zhb0fd\/manifest.plist",
+      "supporteddevice" : "iPhone and iPad",
+      "minosversion" : "9.0",
+      "ipafilesize" : 94,
+      "mobileprovision" : {
+        "devicesudid" : [
+          "09e8619324.....337367ea46"
+        ],
+        "uuid" : "f66e31d2-69ff-4722-92e7-8537de34d158",
+        "teamname" : "Никита Аплин",
+        "expirationdata" : 1536121665,
+        "createdate" : 1535516865,
+        "teamid" : "ESY9U785K8"
+      },
+      "identifier" : "com.nikita-aplin.huyzika1",
+      "version" : "1.0",
+      "timestamp" : 1535521556.271138,
+      "name" : "VKMusicNew"
+    }
+  ],
+  "uniqueLinkShort" : "http:\/\/appstorebeta.com\/iOfydeWJLP"
+}
