@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="198px" height="201px" viewBox="0 0 198 201" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.1 (35376) - http://www.bohemiancoding.com/sketch -->
+    <title>Картинка</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="100%" y1="50%" x2="0%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#EDEEF0" offset="48.6647469%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="До-загрузки-фото" transform="translate(-595.000000, -323.000000)">
+            <g transform="translate(187.000000, 84.000000)" id="Шаг-1.-Выбор-города">
+                <g transform="translate(0.000000, 219.000000)">
+                    <g id="Картинка" transform="translate(386.000000, 0.000000)">
+                        <g id="Group-2" transform="translate(124.500000, 125.500000) rotate(-15.000000) translate(-124.500000, -125.500000) translate(24.000000, 23.000000)" fill="url(#linearGradient-1)">
+                            <rect id="Rectangle-8" x="9.59232693e-14" y="83" width="201" height="11"></rect>
+                            <rect id="Rectangle-8" transform="translate(60.527240, 103.500000) rotate(-90.000000) translate(-60.527240, -103.500000) " x="-6.97275977" y="101.5" width="135" height="4"></rect>
+                            <rect id="Rectangle-8" transform="translate(94.500000, 102.500000) rotate(-90.000000) translate(-94.500000, -102.500000) " x="3" y="97" width="183" height="11"></rect>
+                            <rect id="Rectangle-8" transform="translate(118.785714, 102.500000) rotate(-90.000000) translate(-118.785714, -102.500000) " x="16.7857143" y="97" width="204" height="11"></rect>
+                            <rect id="Rectangle-8" x="5" y="125" width="176" height="4"></rect>
+                            <rect id="Rectangle-8" transform="translate(148.000000, 103.500000) rotate(-90.000000) translate(-148.000000, -103.500000) " x="80.5" y="100.5" width="135" height="6"></rect>
+                        </g>
+                        <path d="M125.143206,93.2513764 C111.356757,93.2513764 100.179555,104.420991 100.179555,118.199639 C100.179555,134.329344 120.982365,163.148624 125.143206,163.148624 C129.304745,163.148624 150.10616,134.329344 150.10616,118.199639 C150.10616,104.420991 138.930353,93.2513764 125.143206,93.2513764 Z M125.143206,132.2516 C117.339187,132.2516 111.011416,125.927729 111.011416,118.128521 C111.011416,110.328616 117.339187,104.005443 125.143206,104.005443 C132.94862,104.005443 139.274996,110.329313 139.274996,118.128521 C139.274996,125.927032 132.94862,132.2516 125.143206,132.2516 Z" id="Shape" fill="#8EAAD9"></path>
+                        <path d="M125.143206,132.2516 C117.339187,132.2516 111.011416,125.927729 111.011416,118.128521 C111.011416,110.328616 117.339187,104.005443 125.143206,104.005443 C132.94862,104.005443 139.274996,110.329313 139.274996,118.128521 C139.274996,125.927032 132.94862,132.2516 125.143206,132.2516 Z" id="Path" fill="#FFFFFF"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

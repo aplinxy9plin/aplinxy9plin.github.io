@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://vk.com/js/api/xd_connection.js?2" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            font-size: 12px;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+    </style>
+    <script>
+        VK.api('users.get', {fields: "photo_50"}, function (data) {
+            avatarUserLink = data.response[0].photo_50;
+            $(document).ready(function () {
+                console.log(data.response[0].id);
+                $(".avatar").attr("src", avatarUserLink);
+            });
+        });
+
+        var id_owner = 19037786;
+        var id_media = 437380806;
+        var urlForUpload;
+        var serverForUpload;
+        var photo;
+
+
+        $(document).ready(function () {
+            $("#submitPost").click(function () {
+                var text_message = $("#textPost").val();
+                var photo_query = "photo" + id_owner + "_" + id_media;
+                VK.api("wall.post", {
+                    "owner_id": "-133945334",
+                    "message": text_message,
+                    "from_group": "1",
+                    "signed": "1",
+                    "attachments": photo_query,
+                }, function (data) {
+                    console.log();
+                });
+            });
+
+            $("#downloadPhoto").click(function () {
+                VK.api('photos.getWallUploadServer', {group_id: "133945334"}, function (data) {
+                    urlForUpload = data.response.upload_url;
+                });
+                console.log(urlForUpload);
+
+                var currentURL = urlForUpload;
+                var xhr = createCORSRequest("POST", currentURL);
+                xhr.setRequestHeader('Content-type', 'multipart/form-data; charset=utf-8');
+                xhr.send();
+                xhr.onreadystatechange = processRequest;
+                function processRequest(e) {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var response = xhr.responseText;
+                        console.log(response);
+                    }
+                }
+
+
+            });
+
+
+
+        });
+
+
+    </script>
+</head>
+<body>
+<a href="index.html">Назад</a>
+<div style="height: 50px; padding: 40px;">
+
+    <img class="avatar" height="50" width="50">
+    <textarea id="textPost" style="height: 40px; width: 300px;" col="40" rows="50">
+ 11
+        </textarea>
+    <br>
+    <button id="submitPost">Отправить пост</button>
+    <br>
+    <br>
+    <button id="downloadPhoto">
+        Загрузить фотографию
+    </button>
+    <!--<form enctype="multipart/form-data" method="post">
+        <p>Загрузите ваши фотографии на сервер</p>
+        <p><input type="file" name="photo" multiple accept="image/*,image/jpeg">
+            <input type="submit" value="Отправить"></p>
+    </form>-->
+
+</div>
+    <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter41195589 = new Ya.Metrika({
+                    id:41195589,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/41195589" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>
+</html>

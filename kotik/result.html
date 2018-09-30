@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск пропавших питомцев</title>
+    <link rel="stylesheet" href="result-style.css">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+</head>
+<body>
+	<main class="container">
+
+		<header class="container-header">
+            <figure class="header-logo"></figure>
+            <p class="header-text">
+                <span class="header-text-l">Поиск пропавших котиков</span>
+                <span class="header-text-s">По фотографии, при помощи технологии нейросетей</span>
+            </p>
+        </header>
+		
+		<a class="btn-medium btn-back"><figure class="icon"></figure>Вернуться назад</a>
+		<span class="column-header">Вот, что нам удалось найти</span>
+
+		<section class="items">
+
+			<article class="item">
+				<figure class="photo"></figure>
+				<span class="date">Размещено: 26 ноября 2016 в 20:51</span>
+				<a href="#">Перейти к записи<figure class="icon"></figure></a>
+				</article>
+
+			<article class="item">
+				<figure class="photo"></figure>
+				<span class="date">Размещено: 26 ноября 2016 в 20:51</span>
+				<a href="#">Перейти к записи<figure class="icon"></figure></a>
+				</article>
+
+			<article class="item">
+				<figure class="photo"></figure>
+				<span class="date">Размещено: 26 ноября 2016 в 20:51</span>
+				<a href="#">Перейти к записи<figure class="icon"></figure></a>
+				</article>
+
+			<article class="item">
+				<figure class="photo"></figure>
+				<span class="date">Размещено: 26 ноября 2016 в 20:51</span>
+				<a href="#">Перейти к записи<figure class="icon"></figure></a>
+				</article>
+
+			<article class="item">
+				<figure class="photo"></figure>
+				<span class="date">Размещено: 26 ноября 2016 в 20:51</span>
+				<a href="#">Перейти к записи<figure class="icon"></figure></a>
+				</article>
+
+			<article class="item">
+				<figure class="photo"></figure>
+				<span class="date">Размещено: 26 ноября 2016 в 20:51</span>
+				<a href="#">Перейти к записи<figure class="icon"></figure></a>
+				</article>
+
+			<article class="item">
+				<figure class="photo"></figure>
+				<span class="date">Размещено: 26 ноября 2016 в 20:51</span>
+				<a href="#">Перейти к записи<figure class="icon"></figure></a>
+				</article>
+
+			<article class="item">
+				<figure class="photo"></figure>
+				<span class="date">Размещено: 26 ноября 2016 в 20:51</span>
+				<a href="#">Перейти к записи<figure class="icon"></figure></a>
+				</article>
+		</section>
+
+		<span class="column-header">
+			Не нашли своего питомца? Попробуйте позвонить по этому номеру:
+			<span>8 (812) 338-80-08</span>
+		</span>
+		<!--
+		<section class="post">
+				<arctile class="field">
+					<div class="textarea" contenteditable="true"></div>
+					<div class="placeholder">Напишите о пропавшем котике...</div>
+				</arctile>
+
+				<article class="field-controls">
+					<figure class="pet-photo"></figure>
+					<span class="text">Фотография, которую вы загрузили,<br>прикладывается к посту.</span>
+					<button class="btn-medium suggest-post">Предложить пост</button>
+				</article>
+		</section>
+		-->
+		<script type="text/javascript">
+				$('.textarea').click(function() {
+					$('.placeholder').hide();
+					return false;
+					$('.textarea').focus();
+					});
+				$('body').click(function() {
+					$('.placeholder').show();
+				});
+		</script>
+	</main>
+	<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter41195589 = new Ya.Metrika({
+                    id:41195589,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/41195589" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</body>

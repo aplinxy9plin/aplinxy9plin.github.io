@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="6px" viewBox="0 0 12 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.1 (35376) - http://www.bohemiancoding.com/sketch -->
+    <title>Path 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="До-загрузки-фото" transform="translate(-490.000000, -519.000000)" fill="#8EAAD9">
+            <g transform="translate(187.000000, 84.000000)" id="Шаг-1.-Выбор-города">
+                <g transform="translate(0.000000, 219.000000)">
+                    <g id="Выбор-города" transform="translate(35.000000, 209.000000)">
+                        <g id="default">
+                            <path d="M273.434884,11.4726366 L274.523534,11.4733423 L273.979498,11.0217225 L273.434884,11.4726366 Z M269.400958,7.22094896 C269.036159,6.91811859 268.496537,6.9702938 268.19568,7.33748555 C267.894822,7.7046773 267.946657,8.24783755 268.311457,8.55066792 L273.434032,12.8030613 C273.750031,13.0653805 274.206349,13.0656763 274.522683,12.803767 L279.687691,8.52738805 C280.052878,8.22503089 280.105408,7.6819383 279.805021,7.31435679 C279.504634,6.94677528 278.965079,6.89390049 278.599892,7.19625765 L273.979498,11.0217225 L269.400958,7.22094896 Z" id="Path-2"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

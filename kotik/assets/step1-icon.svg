@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="18px" viewBox="0 0 20 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.1 (35376) - http://www.bohemiancoding.com/sketch -->
+    <title>home</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="До-загрузки-фото" transform="translate(-222.000000, -315.000000)" fill="#8EAAD9">
+            <g transform="translate(187.000000, 84.000000)" id="Шаг-1.-Выбор-города">
+                <g transform="translate(0.000000, 219.000000)">
+                    <g id="Заголовок" transform="translate(35.000000, 11.000000)">
+                        <g id="home" transform="translate(0.000000, 1.000000)">
+                            <path d="M12.5,13.2 C12.5,11.8745166 11.3807119,10.8 10,10.8 C8.61928813,10.8 7.5,11.8745166 7.5,13.2 L7.5,18 L12.5,18 L12.5,13.2 Z M9.28082466,0.690408325 C9.67801423,0.309106336 10.321392,0.308536291 10.7191753,0.690408325 L19.2808247,8.90959167 C19.6780142,9.29089366 19.5446944,9.6 19.0081969,9.6 L0.99180311,9.6 C0.444045377,9.6 0.32139197,9.29146371 0.719175339,8.90959167 L9.28082466,0.690408325 Z M2.5,9.6 L17.5,9.6 L17.5,17.0034235 C17.5,17.5538175 17.0510798,18 16.492516,18 L3.50748397,18 C2.95106594,18 2.5,17.5483795 2.5,17.0034235 L2.5,9.6 Z" id="Combined-Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
