@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Поиск пропавших питомцев</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="result-style.css">
+    <link rel="icon" href="assets/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+    <script src="https://vk.com/js/api/xd_connection.js?2" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        VK.init(function () {
+                    /*document.getElementById('body').clientHeight*/
+                VK.callMethod("resizeWindow", 650, 910);
+                $(document).ready(function () {
+
+
+                    function scaleSize(maxW, maxH, currW, currH) {
+
+                        var ratio = currH / currW;
+
+                        if (currW >= maxW && ratio <= 1) {
+                            currW = maxW;
+                            currH = currW * ratio;
+                        } else if (currH >= maxH) {
+                            currH = maxH;
+                            currW = currH / ratio;
+                        }
+
+                        return [currW, currH];
+                    }
+
+                    var globalPhotoOwner = 0;
+                    var globalMediaId = 0;
+
+                    function timeConverter(UNIX_timestamp) {
+                        var a = new Date(UNIX_timestamp * 1000);
+
+                        var months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+                        var year = a.getFullYear();
+                        var month = months[a.getMonth()];
+                        var date = a.getDate();
+                        var hour = a.getHours();
+                        var mins = a.getMinutes();
+                        console.log(mins.length);
+                        if (mins.toString().length < 2) {
+                            mins = "0" + mins;
+                        }
+                        var ansString = "Размещено: " + date + " " + month + " " + year + " в " + hour + ":" + mins;
+                        console.log(ansString);
+                        return ansString;
+                    }
+
+
+                    $('#mainForm').on('submit', (function (e) {
+                        e.preventDefault();
+                        var formData;
+                        if ($(".url-field-text").css("display") == "inline-block") {
+                            var text_from_input = $(".url-field-text").val();
+                            console.log($(".url-field-text").val());
+                            formData = new FormData();
+                            formData.append("url", text_from_input);
+                        } else {
+                            formData = new FormData(this);
+                        }
+
+                        $.ajax({
+                            type: 'POST',
+                            url: "https://vkhackathon.sevazhidkov.me/network/upload",
+                            data: formData,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (data) {
+                                console.log("success");
+                                var links = JSON.parse(data);
+                                console.log(data);
+                                //globalPhotoOwner = links["post"][0].owner_id;
+                                // globalMediaId = links["post"][0].id;
+                                var urlLinks = [];
+                                var urlPosts = [];
+                                var dates = [];
+                                var requested_posts = [];
+                                for (var i = 0; i < links["elems"].length; i++) {
+                                    urlLinks.push("https://api.rethumb.com/v1/square/280/" + links["elems"][i].url);
+                                    var post_id = links["elems"][i].post_id;
+                                    var owner_id = links["elems"][i].owner_id;
+                                    urlPosts.push("https://vk.com/wall" + owner_id + "_" + post_id);
+                                    console.log("https://vk.com/wall" + owner_id + "_" + post_id);
+                                    requested_posts.push(owner_id + "_" + post_id);
+                                }
+                                console.log(requested_posts);
+                                console.log(links["elems"].length);
+                                var i = 0;
+                                $(".uploadPhoto").each(function () {
+                                    $(this).attr("src", urlLinks[i]);
+                                    i = i + 1;
+                                });
+                                var i = 0;
+                                $(".postLink").each(function () {
+                                    $(this).attr("href", urlPosts[i]);
+                                    $(this).attr("target", "_blank");
+                                    i = i + 1;
+                                });
+
+
+                                VK.api('wall.getById', {posts: requested_posts.join(",")}, function (request) {
+                                    for (var i = 0; i < request.response.length; i++) {
+                                        if (request.response[i] === undefined)
+                                            dates.push(1480174794);
+                                        else {
+                                            var text_date = request.response[i].date;
+
+                                            dates.push(timeConverter(text_date));
+                                        }
+                                    }
+                                    var j = 0;
+                                    $(".date").each(function () {
+                                        if(j >= dates.length)
+                                            $(this).text(timeConverter(1480175188));
+                                        else
+                                            $(this).text(dates[j]);
+                                        j = j + 1;
+                                    });
+                                });
+
+
+                            },
+                            error: function (data) {
+                                console.log("error");
+                                console.log(data);
+                            }
+                        });
+                    }));
+
+                    $("#ImageBrowse").on("change", function () {
+                        var size = this.files[0].size;
+                        var nameFile = this.files[0].name;
+                        $("#uploadedPhoto").text(nameFile);
+                        var ext = nameFile.substr((nameFile.lastIndexOf('.') + 1));
+                        if ((ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'gif' || ext == 'PNG' || ext == 'JPG' || ext == 'JPEG') && size <= 1000000) {
+                            var x = 0;
+                            $(".error").hide();
+                        } else {
+                            $(".error").show();
+                        }
+                    });
+
+                    $("#choosePhoto").click(function () {
+                        $("#ImageBrowse").click();
+                    });
+
+
+                    $("#startSearch").click(function () {
+                        if ($(".error").css("display") == "block")
+                            return false;
+                        else {
+                            $("#mainForm").submit();
+                            $("#page1").css("display", "none");
+
+                            VK.callMethod("resizeWindow", 650, 1900);
+                            $("#page2").css("display", "block");
+                        }
+                    });
+
+                    $("#submitPost").click(function () {
+                        var message_text = $(".textarea").text();
+                        var photo_query = "photo" + globalPhotoOwner + "_" + globalMediaId;
+                        console.log(photo_query);
+                        VK.api("wall.post", {
+                            "owner_id": "-133945334",
+                            "message": message_text,
+                            "attachments": photo_query,
+                        }, function (data) {
+                            console.log();
+                        });
+                    });
+
+
+                });
+
+
+            },
+            function () {
+                // API initialization failed
+                // Can reload page here
+            }
+            ,
+            '5.60'
+        )
+        ;
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('#insertLink').on("click", function () {
+                $(".attach-photo").css("display", "none");
+                $(".url-field").css("display", "inline-block");
+                $(".url-field-text").css("display", "inline-block");
+            });
+            $('.url-cancel').on("click", function () {
+                $(".attach-photo").css("display", "inline");
+                $(".url-field").css("display", "none");
+                $(".url-field-text").css("display", "none");
+            });
+
+            $("#back-page").click(function(){
+                location.reload();
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+<div id="page1">
+    <main class="container">
+
+        <header class="container-header">
+            <figure class="logo"></figure>
+            <p class="header-text">
+                <span class="header-text-l">Поиск пропавших котиков</span>
+                <span class="header-text-s">По фотографии, при помощи технологии нейросетей</span>
+            </p>
+        </header>
+
+        <section class="step-block step-block-1">
+
+            <header class="header">
+                <figure class="header-icon"></figure>
+                <h2>Шаг 1. Выбор города</h2>
+            </header>
+
+            <figure class="picture"></figure>
+            <p class="text">
+                Мы поможем вам найти пропавшего домашнего любимца.<br><br>
+                Для начала уточним город, в котором будем искать котика:
+            </p>
+            <p class="dropdown">Санкт-Петербург</p>
+            <span class="label">Пока доступен только один город</span>
+        </section>
+
+        <section class="step-block step-block-2">
+
+            <header class="header">
+                <figure class="header-icon"></figure>
+                <h2>Шаг 2. Загрузка фотографии</h2>
+            </header>
+            <figure class="picture"></figure>
+            <p class="text">
+                Выберите самую качественную фотографию, на которой был запечатлён ваш котик.
+                <br> Чем лучше фото – тем выше шанс найти именно вашего питомца.
+            </p>
+            <section class="attach-photo">
+                <button id="choosePhoto" class="btn-big">Выбрать фотографию</button>
+                <p class="url">или вы можете <a href="#" id="insertLink">вставить URL-ссылку</a></p>
+                <p class="photo-choosen">Вы выбрали файл: <span id="uploadedPhoto"></span></p>
+            </section>
+            <p class="url-field">Вставьте URL-ссылку<span class="url-cancel">Отменить</span></p>
+            <input class="url-field-text" type="text">
+        </section>
+
+
+        <section class="error" style="display: none;">
+            <figure class="icon"></figure>
+            <span>Ошибка! Вы не выбрали фотографию</span>
+        </section>
+
+        <a href="#" id="startSearch" class="btn-search">
+            <figure class="icon"></figure>
+            Начать поиск</a>
+    </main>
+
+    <form style="display: none;" id="mainForm" enctype="multipart/form-data" style="padding: 20px;">
+        <input name="file" type="file" id="ImageBrowse"/>
+        <input type="submit" name="upload" value="Upload"/>
+    </form>
+</div>
+
+<div id="page2" style="display: none;">
+    <main class="container">
+
+        <header class="container-header">
+            <figure class="header-logo"></figure>
+            <p class="header-text">
+                <span class="header-text-l">Поиск пропавших котиков</span>
+                <span class="header-text-s">По фотографии, при помощи технологии нейросетей</span>
+            </p>
+        </header>
+
+        <a id="back-page" class="btn-medium btn-back"><figure class="icon"></figure>Вернуться назад</a>
+        <span class="column-header">Вот, что нам удалось найти</span>
+
+        <section class="items">
+
+            <article class="item">
+                <figure class="photo">
+                    <img class="uploadPhoto" src="">
+                </figure>
+                <span class="date"></span>
+                <a class="postLink" href="#">Перейти к записи
+                    <figure class="icon"></figure>
+                </a>
+            </article>
+
+            <article class="item">
+                <figure class="photo">
+                    <img class="uploadPhoto" src="">
+                </figure>
+                <span class="date"></span>
+                <a class="postLink" href="#">Перейти к записи
+                    <figure class="icon"></figure>
+                </a>
+            </article>
+
+            <article class="item">
+                <figure class="photo">
+                    <img class="uploadPhoto" src="">
+                </figure>
+                <span class="date"></span>
+                <a class="postLink" href="#">Перейти к записи
+                    <figure class="icon"></figure>
+                </a>
+            </article>
+
+            <article class="item">
+                <figure class="photo">
+                    <img class="uploadPhoto" src="">
+                </figure>
+                <span class="date"></span>
+                <a class="postLink" href="#">Перейти к записи
+                    <figure class="icon"></figure>
+                </a>
+            </article>
+
+            <article class="item">
+                <figure class="photo">
+                    <img class="uploadPhoto" src="">
+                </figure>
+                <span class="date"></span>
+                <a class="postLink" href="#">Перейти к записи
+                    <figure class="icon"></figure>
+                </a>
+            </article>
+
+            <article class="item">
+                <figure class="photo">
+                    <img class="uploadPhoto" src="">
+                </figure>
+                <span class="date"></span>
+                <a class="postLink" href="#">Перейти к записи
+                    <figure class="icon"></figure>
+                </a>
+            </article>
+
+            <article class="item">
+                <figure class="photo">
+                    <img class="uploadPhoto" src="">
+                </figure>
+                <span class="date"></span>
+                <a class="postLink" href="#">Перейти к записи
+                    <figure class="icon"></figure>
+                </a>
+            </article>
+
+            <article class="item">
+                <figure class="photo">
+                    <img class="uploadPhoto" src="">
+                </figure>
+                <span class="date"></span>
+                <a class="postLink" href="#">Перейти к записи
+                    <figure class="icon"></figure>
+                </a>
+            </article>
+        </section>
+
+        <span class="column-header">
+			Не нашли своего питомца? Попробуйте позвонить по этому номеру:
+			<span>8 (812) 338-80-08</span>
+		</span>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.textarea').click(function () {
+                    $('.placeholder').hide();
+                });
+                $('.placeholder').click(function () {
+                    $('.placeholder').hide();
+                });
+                $('body').click(function () {
+                    $('.placeholder').show();
+                });
+            });
+        </script>
+    </main>
+	<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter41195589 = new Ya.Metrika({
+                    id:41195589,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/41195589" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</div>
+</body>
+
+</html>
