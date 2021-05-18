@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+      <link href="style.css" rel="stylesheet" type="text/css" />
+      <style>
+        .circleContainer {
+          position: relative;
+        }
+        .circle {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 20px;
+          height: 20px;
+          border-radius: 100px;
+        }
+        .greenCircle {
+          background-color: #006400
+        }
+        .redCircle {
+          background-color: tomato
+        }
+      </style>
+      <title>CompanyName</title>
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-lg" style="background-color:mediumpurple">
+         <div class="container">
+            <a class="navbar-brand" style="color: white" href="/">CompanyName</a>
+         </div>
+      </nav>
+      <div class="container">
+        <h1 class="mt-3 text-center">All active Chia mining pools</h1>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover table-sm">
+              <thead>
+                <tr>
+                    <th class="align-middle">Pool</th>
+                    <th class="align-middle">Fee</th>
+                    <th class="align-middle" data-toggle="tooltip" title="" data-original-title="We are currently monitoring 80 % of the total network hashrate.">
+                      Network Hashrate
+                    </th>
+                    <th class="align-middle">Official protocol</th>
+                    <th class="align-middle">Scam Risk</th>
+                </tr>
+              </thead>
+              <tbody id="tdata"></tbody>
+          </table>
+          <form class="row justify-content-md-center" id="contact-form" role="form">
+            <div class="col-sm-3" style="display: flex; align-items: center;">
+              Missing pool ?
+            </div>
+            <div class="col-sm-3" style="margin-top: 10px;">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Please enter pool URL"
+                required="required"
+                data-error="Pool is required."
+              />
+              <div class="help-block with-errors"></div>
+            </div>
+            <div class="col-sm-3" style="margin-top: 10px;">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Message or Api URL (optional)"
+              />
+              <div class="help-block with-errors"></div>
+            </div>
+            <div class="col-sm-3" style="margin-top: 10px;">
+              <input
+                type="submit"
+                id="sendpool"
+                class="btn btn-success btn-send"
+                value="Submit Pool"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- start import json -->
+      <script src="data.js"></script>
+      <!-- end import json -->
+      <script>
+        jsonData.forEach(element => {
+          const html = `
+            <tr>
+              <td class="align-middle font-weight-bold">
+                <a href="${element.pool.link}" target="_blank">
+                  ${element.pool.name}
+                </a>
+              </td>
+              <td>${element.fee}</td>
+              <td>${element.networkHashrate}</td>
+              <td class="circleContainer">
+                <div
+                  class="circle ${
+                    element.officialProtocol ? (
+                      "greenCircle"
+                    ) : (
+                      "redCircle"
+                    )
+                  }"
+                />
+              </td>
+              <td
+                class="align-middle font-weight-bold"
+                style="color: ${element.scamRisk ? "red" : "green"}"
+              >
+                ${element.scamRisk ? "High" : "Safe"}
+              </td>
+            </tr>
+          `
+          document.getElementById("tdata").innerHTML += html
+        });
+      </script>
+   </body>
+</html>
